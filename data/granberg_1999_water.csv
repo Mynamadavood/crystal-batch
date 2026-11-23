@@ -1,0 +1,12 @@
+# Paracetamol solubility in pure water.
+# Source: Granberg, R. A., & Rasmuson, A. C. (1999). Solubility of paracetamol in pure solvents.
+#         J. Chem. Eng. Data 44(6), 1391-1395. doi:10.1021/je990124v
+# Values converted to g PA / kg water from the paper; conversion in validation/FujiwaraVGranberg.xlsx (A15:B22).
+T_C,g_per_kg
+0,7.21
+5,8.21
+10,9.44
+15,10.97
+20,12.78
+25,14.9
+30,17.39
