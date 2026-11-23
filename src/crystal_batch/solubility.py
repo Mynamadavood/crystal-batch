@@ -34,4 +34,49 @@ def mole_fraction(T_K):
     X_PA = np.exp(A/T_K +  B*np.log(T_K) + C)
         
     return X_PA   
-  
+
+def g_per_kg(X_PA):
+    """Calculates the solubility of Paracetamol in water in g PA / kg H2O, using the calculated mole fraction at given temperature,
+    using the equation : g PA /kg H2O = 1000*X_PA*M_PA/[(1-X_PA)*M_H2O]
+
+    Parameters
+    ----------
+    X_PA : float or array, Mole fraction of Paracetamol in water [mol PA / mol solution]
+
+    Returns
+    -------
+    float or array, Solubility of Paracetamol in water [g PA / kg H2O]
+    """
+    gPA_per_kgH2O = 1000*M_PA*X_PA/((1-X_PA)*M_H2O)
+
+    return gPA_per_kgH2O
+
+def delta_H(T_K):
+    """Calculates the apparent enthalpy of solution (dissolution) by applying van 't Hoff to Fujiwara's correlation using the equation:
+    ΔH = R*(-A+BT), with ΔH being positive, indicating that the dissolution of paracetamol in water is an endothermic process and 
+    crystalisation is -ΔH, which is exothermic.
+
+    Derivation of van 't Hoff and Fujiwara:
+
+    ln x = A/T + B ln T + C -> d(ln x)/dT = -A/T^2 +B/T # Fujiwara's correlation derived
+    d(ln x)/dT = ΔH/(R*T^2) # van 't Hoff equation
+    ΔH = R*T^2*(-A/T^2 +B/T) = R*(-A+BT) 
+
+    Parameters
+    ----------
+    T_K : float or array, Temperature in Kelvin [K]
+
+    Returns
+    -------
+    float or array, Apparent enthalpy of solution (dissolution) [J/mol]
+
+    Sources
+    -------
+    Fujiwara et al. (2002), Cryst. Growth Des. 2(5), 363–370, doi:10.1021/cg0200098
+    """
+    if np.any((T_K < 293.15) | (T_K > 323.15)):
+        warnings.warn("Temperature chosen falls outside of the valid range of the solubility equation (293.15 K to 323.15 K).", stacklevel=2)   
+
+    dH= R*(-A+B*T_K)
+    return dH
+

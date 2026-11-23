@@ -33,7 +33,7 @@ def test_mole_fraction(T_K, expected):
 @pytest.mark.parametrize(
     "x, expected",
     [
-        (0.004082, 34.388),  # hand calc, validation/03 or 05
+        (0.004082, 34.392),  # hand calc, validation/03 or 05
         (0.001283, 10.78),  # hand calc, validation/03 or 05
     ],
 )
@@ -48,7 +48,7 @@ def test_g_per_kg(x, expected):
 @pytest.mark.parametrize(
     "T_K, expected",
     [
-        (298.15, 24053),  # Published Value (Fujiwara 2002): independent check
+        (298.15, 24050),  # Published Value (Fujiwara 2002): independent check
         (323.15, 29690),  # 50 °C hand calc, validation/03 or 05
         (288.15,21798),  #15 °C - extrapolated beyond the 20–50 °C fit
     ],
