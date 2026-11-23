@@ -19,8 +19,8 @@ def _check(actual, expected):
 @pytest.mark.parametrize(
     "T_K, expected",
     [
-        (323.15, None),  # TODO: 50 °C, from 05_checks
-        (288.15, None),  # TODO: 15 °C (extrapolated), from 05_checks
+        (323.15,0.004082 ),  # hand calc, validation/05_checks
+        (288.15, 0.001283),  # hand calc, validation/05_checks
     ],
 )
 def test_mole_fraction(T_K, expected):
@@ -33,8 +33,8 @@ def test_mole_fraction(T_K, expected):
 @pytest.mark.parametrize(
     "x, expected",
     [
-        (None, None),  # TODO: x at 50 °C -> 34.388 g/kg (05_checks)
-        (None, None),  # TODO: x at 15 °C -> g/kg (05_checks)
+        (0.004082, 34.388),  # hand calc, validation/03 or 05
+        (0.001283, 10.78),  # hand calc, validation/03 or 05
     ],
 )
 def test_g_per_kg(x, expected):
@@ -44,13 +44,13 @@ def test_g_per_kg(x, expected):
 
 
 # --- delta_H(T_K) -----------------------------------------------------------
-# TODO: state units of expected values here (J/mol or kJ/mol) to match your function.
+# Units: Expected values in J/mol 
 @pytest.mark.parametrize(
     "T_K, expected",
     [
-        (298.15, None),  # TODO: Fujiwara's published value
-        (323.15, None),  # TODO: 50 °C
-        (288.15, None),  # TODO: 15 °C (extrapolated)
+        (298.15, 24053),  # Published Value (Fujiwara 2002): independent check
+        (323.15, 29690),  # 50 °C hand calc, validation/03 or 05
+        (288.15,21798),  #15 °C - extrapolated beyond the 20–50 °C fit
     ],
 )
 def test_delta_H(T_K, expected):
