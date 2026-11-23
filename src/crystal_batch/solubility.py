@@ -10,8 +10,8 @@ A = 5193.109   # Kelvin constant used in the solubility equation from Fujiwara e
 B = 27.121124  # Dimensionless B constant used in the solubility equation from Fujiwara et al. (2002)
 C = -178.28055 # Dimensionless C constant used in the solubility equation from Fujiwara et al. (2002)
 
-M_PA = 151.16 #Molar mass of paracetamol in g/mol
-M_H2O = 18.015 #Molar mass of water in g/mol
+M_PA = 151.16 #Molar mass of paracetamol (C8H9NO2) in g/mol; source: PubChem CID 1983
+M_H2O = 18.015 #Molar mass of water in g/mol; source: NIST Chemistry WebBook, SRD 69 (18.0153, CAS 7732-18-5)
 R = 8.314 #Universal gas constant in J/(mol*K)
 
 def mole_fraction(T_K):
