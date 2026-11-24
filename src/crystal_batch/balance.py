@@ -5,9 +5,9 @@ Note: seed mass is excluded from product (added, not produced) - 03 p.2."""
 from .solubility import mole_fraction, g_per_kg
 
 def dissolved(m_water, T_sat):
-    """Calculates the charge amount of paracetamol dissolved at saturated temperature by multiplying the solubility in g PA / kg H2O by the mass of water in kg and converting to kg PA.
-    the mass of water by the solubility in g PA / kg H2O and converting to kg PA. per batch.
-
+    """Calculates the charge amount of paracetamol dissolved at saturated temperature by multiplying 
+    the solubility in g PA / kg H2O by the mass of water in kg and converting to kg PA.
+    
     Parameters
     ----------
     m_water : float, Mass of water in kg [kg]
@@ -81,8 +81,5 @@ def recovery(m_water,T_sat,T_final):
     Charge = dissolved(m_water, T_sat)
     P = product(m_water,T_sat,T_final)
     R = P / Charge 
-
-    if Charge == 0:
-        raise ValueError("Charge cannot be zero.")
-
+    
     return R
