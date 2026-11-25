@@ -6,8 +6,7 @@ Fill each `None` with the hand-calc value and each pytest.fail with the check.
 Seed is excluded from product (added, not produced) - 03 p.2.
 """
 import pytest
-
-from crystal_batch import balance  # plain import: red (not skipped) until balance.py exists
+from crystal_batch import balance   # plain import: red (not skipped) until balance.py exists
 
 REL = 1e-3  # agreed tolerance: matches hand calc to ~4 sig figs
 M_WATER = 350.0  # kg
@@ -68,3 +67,6 @@ def test_closure():
 @pytest.mark.filterwarnings("ignore::UserWarning")
 def test_colder_gives_more_product():
     assert balance.product(M_WATER,T_SAT,T_EDGE) < balance.product(M_WATER,T_SAT,T_EXTRAP)
+
+def test_recovery_zero_when_no_cooling():
+    assert balance.recovery(M_WATER, T_SAT, T_SAT) == 0
