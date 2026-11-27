@@ -1,8 +1,6 @@
 """Tests for crystal_batch.balance against the hand calculations.
 
-Reference answers: validation/03_mass_balance_hand.pdf (p.1-2);
-293.15 K cases from docs/EnergyBalance.md:231.
-Fill each `None` with the hand-calc value and each pytest.fail with the check.
+Reference answers: validation/03_mass_balance_hand.pdf (p.1-2); 293.15 K cases from validation/05_checks_hand.pdf p.1.
 Seed is excluded from product (added, not produced) - 03 p.2.
 """
 import pytest
@@ -25,8 +23,9 @@ def test_dissolved():
 
 
 # --- mother_liquor(m_water, T_final) ----------------------------------------
+@pytest.mark.filterwarnings("error")
 def test_mother_liquor_in_range():
-    _check(balance.mother_liquor(M_WATER, T_EDGE), 4.426)  # kg
+    _check(balance.mother_liquor(M_WATER, T_EDGE), 4.426)  # kg, 05 p.1 
 
 
 def test_mother_liquor_extrapolated_warns():
@@ -36,8 +35,9 @@ def test_mother_liquor_extrapolated_warns():
 
 
 # --- product(m_water, T_sat, T_final) ---------------------------------------
+@pytest.mark.filterwarnings("error")
 def test_product_in_range():
-    _check(balance.product(M_WATER, T_SAT, T_EDGE), 7.610)  # kg
+    _check(balance.product(M_WATER, T_SAT, T_EDGE), 7.610)  # kg, 05 p.1
 
 
 def test_product_extrapolated_warns():
@@ -58,10 +58,15 @@ def test_recovery_extrapolated_warns():
     _check(r, 0.686)  # fraction, 03 p.2
 
 
+@pytest.mark.filterwarnings("error")
+def test_recovery_in_range():
+    r = balance.recovery(M_WATER, T_SAT, T_EDGE)
+    _check(r, 0.6323)  # fraction 05 p.1: 7.6103 / 12.036
+
 # --- physics checks ---------------------------------------------------------
 @pytest.mark.filterwarnings("ignore::UserWarning")
 def test_closure():
-    assert balance.product(M_WATER,T_SAT,T_EXTRAP)+ balance.mother_liquor(M_WATER,T_EXTRAP) == pytest.approx(balance.dissolved(M_WATER,T_SAT), rel=REL)  # 03 p.2 
+    assert balance.product(M_WATER,T_SAT,T_EXTRAP)+ balance.mother_liquor(M_WATER,T_EXTRAP) == pytest.approx(balance.dissolved(M_WATER,T_SAT), rel=1e-12)  # true by construction ; regression guard 
 
 
 @pytest.mark.filterwarnings("ignore::UserWarning")
@@ -69,4 +74,4 @@ def test_colder_gives_more_product():
     assert balance.product(M_WATER,T_SAT,T_EDGE) < balance.product(M_WATER,T_SAT,T_EXTRAP)
 
 def test_recovery_zero_when_no_cooling():
-    assert balance.recovery(M_WATER, T_SAT, T_SAT) == 0
+    assert balance.recovery(M_WATER, T_SAT, T_SAT) == pytest.approx(0, abs=1e-12)
