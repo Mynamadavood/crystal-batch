@@ -17,8 +17,8 @@ from crystal_batch.balance import recovery #noqa: E402
 
 M_WATER = 350.0        # kg
 T_SAT = 323.15         # K, saturated at 50 °C
-HAND_T_C = [15, 20]    # °C, hand calc 03 p.2
-HAND_R = [68.6, 63.2]  # %
+HAND_T_C = [15, 20]    # °C, 15 °C from 03 p.2, 20 °C from 05 p.1
+HAND_R = [68.6, 63.2]  # %: 68.6 from 03 p.2 ; 63.2 = 7.6103 /12.036 from 05 p.1
 
 T_C = np.linspace(15, 50, 141)
 R = []
@@ -36,7 +36,7 @@ ax.plot(T_C[fitted], R[fitted], color="#1f4e79", lw=1.8,
 ax.plot(T_C[T_C <= 20], R[T_C <= 20], color="#1f4e79", lw=1.8, ls="--",
         label="Recovery extrapolated 15–20 °C")
 ax.plot(HAND_T_C, HAND_R, ls="none", marker="o", ms=6, mfc="white", mec="#c55a11", mew=1.5, clip_on=False,
-        label="Hand Calc points, 15–20 °C (03 p.2)")
+        label="Hand Calc points, 15–20 °C (03 p.2, 05 p.1)")
 
 ax.set_xlabel("Final Temperature, T_final (°C)")
 ax.set_ylabel("Recovery (%)")

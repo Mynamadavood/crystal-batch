@@ -16,7 +16,7 @@ Utilising a pilot scale, drawing on Fujiwara’s lab scale of a 500ml flask, 350
 
 Recovery \= 69% meaning roughly 31% of paracetamol, 3.8 kg every batch goes out with the mother liquor 
 
-For this design, Water offers a small solubility swing (1-2 g/kg per 5℃ , against 20-30 g/kg for a solvent such as methanol ; Granberg 1999). 69% of the dissolved paracetamol is recovered and 3.8 kg per batch stays in the mother liquor. 
+For this design, water offers a small solubility swing of ~2 g/kg per 5°C  at the cold end, rising to ~5 g/kg per 5°C at 45-50°C (Fujiwara, 2002). Methanol, by comparison, swings 20-30 g/kg over the same step (Granberg 1999). 69% of the dissolved paracetamol is recovered and 3.8 kg per batch stays in the mother liquor. 
 
 To put it into perspective, utilising  Granberg’s cooling window of 30 → 0℃, Water holds a recovery of 59% whereas Methanol has a  recovery capacity of \~48%. However, the low absolute solubility of water produces 10 g per kg of water against Methanol’s 180 g/kg per kg of methanol. Thus, whilst water on paper has the greatest fractional recovery, it lacks productivity and its low effectiveness is demonstrated by outputting 18x less product per kg of solvent than methanol over the same window.
 
